@@ -1,0 +1,14 @@
+.orgaEnclos{
+    display: flex;
+
+    justify-content: space-between;
+}
+
+
+.enclos{
+    background-color: green;
+    border: 5px solid black;
+    width: 100px;
+    height: 100px;
+}
+
