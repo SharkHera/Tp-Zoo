@@ -4,11 +4,10 @@
 class Animal
 {
 
-
+    private $name;
     private $nomEspece; // propriété qui va stocker son espece.
     private $poids;
     private $id;
-    private $typeAnimaux;
     private $taille;
     private $age;
     private $aFaim = 'true';
@@ -17,36 +16,30 @@ class Animal
 
 
 
-    // public function __construct(array $data) 
-    // {
-
-    //     if (isset($data['name'])){
-    //         $this->setNomEspece($data['name']);
-    //     }
-    //     if (isset($data['age'])){
-    //         $this->setAge($data['age']);
-    //     }
-    //     if (isset($data['id'])){
-    //         $this->setId($data['id']);
-    //     }
-    //     if (isset($data['poids'])){
-    //         $this->setPoids($data['poids']);
-    //     }
-    //     if (isset($data['taille'])){
-    //         $this->setTaille($data['taille']);
-    //     }
-    //     if (isset($data['type'])){
-    //         $this->setTypeAnimaux($data['type']);
-    //     }
-    // }
-
-    public function __construct($poids, $taille, $nomEspece, $age)
+    public function __construct(array $data)
     {
-        $this->poids = $poids;
-        $this->taille = $taille;
-        $this->nomEspece = $nomEspece;
-        $this->age = $age;
+
+        if (isset($data['name'])) {
+            $this->setName($data['name']);
+        }
+        if (isset($data['age'])) {
+            $this->setAge($data['age']);
+        }
+        if (isset($data['id'])) {
+            $this->setId($data['id']);
+        }
+        if (isset($data['poids'])) {
+            $this->setPoids($data['poids']);
+        }
+        if (isset($data['taille'])) {
+            $this->setTaille($data['taille']);
+        }
+
+        if (isset($data['nomEspece'])) {
+            $this->setNomEspece($data['nomEspece']);
+        }
     }
+
 
     public function Manger()
     {
@@ -248,20 +241,21 @@ class Animal
         return $this;
     }
 
+
     /**
-     * Get the value of typeAnimaux
+     * Get the value of name
      */
-    public function getTypeAnimaux()
+    public function getName()
     {
-        return $this->typeAnimaux;
+        return $this->name;
     }
 
     /**
-     * Set the value of typeAnimaux
+     * Set the value of name
      */
-    public function setTypeAnimaux($typeAnimaux): self
+    public function setName($name): self
     {
-        $this->typeAnimaux = $typeAnimaux;
+        $this->name = $name;
 
         return $this;
     }

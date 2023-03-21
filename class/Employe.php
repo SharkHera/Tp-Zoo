@@ -25,16 +25,38 @@ class Employe
     {
     }
 
-    public function AjouterAnimaux()
+    public function AjouterAnimaux(Animal $animal)
     {
+        $request = $this->db->prepare('INSERT INTO animaux (type,name,nomEspece) VALUE(:type,:name,:nomEspece)');
+        $request->execute([
+            'name' => $animal->getName(),
+            'type' => $animal->getTYPE(),
+            'nomEspece' => $animal->getnomEspece()
+        ]);
+    }
+
+    public function findAllAnimaux()
+    {
+        $query = $this->db->query('SELECT * FROM animaux');
+        $allAnimaux = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        $allAnimauxData = [];
+
+        foreach ($allAnimaux as $data) {
+            $animal = new Animal($data);
+            array_push($allAnimauxData, $animal);
+        }
+
+        return $allAnimauxData;
     }
 
     public function AjouterEnclos(Enclos $enclos)
     {
-        $request = $this->db->prepare('INSERT INTO enclos (typeEnclos,name) VALUE(:typeEnclos,:name)');
+        $request = $this->db->prepare('INSERT INTO enclos (typeEnclos,name,cleanliness) VALUE(:typeEnclos,:name,:cleanliness)');
         $request->execute([
             'name' => $enclos->getNom(),
-            'typeEnclos' => $enclos->getenclosType()
+            'typeEnclos' => $enclos->getenclosType(),
+            'cleanliness' => $enclos->getcleanliness()
         ]);
     }
 
@@ -52,6 +74,36 @@ class Employe
         }
 
         return $allEncloslapute;
+    }
+
+    public function MoveAnimalToEnclosure(array $data)
+    {
+
+        $query = $this->db->prepare('UPDATE animaux SET enclosId = :enclosId WHERE id = :id');
+        $query->execute([
+            'enclosId' => $data['enclosId'],
+            'id' => $data['id']
+        ]);
+    }
+
+    public function DisplayAnimal()
+    {
+
+        $query = $this->db->prepare('SELECT * FROM animaux WHERE enclosId = :id');
+        $query->execute([
+            'id' => $_POST['id']
+        ]);
+
+        $displayAnimaux = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        $displayAnimauxData = [];
+
+        foreach ($displayAnimaux as $data) {
+            $display = new Animal($data);
+            array_push($displayAnimauxData, $display);
+        }
+
+        return $displayAnimauxData;
     }
 
 

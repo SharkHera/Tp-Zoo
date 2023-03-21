@@ -1,14 +1,13 @@
-.orgaEnclos{
-    display: flex;
+body {
+    background-color: darkgreen;
 
-    justify-content: space-between;
 }
 
+.center {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 3%;
 
-.enclos{
-    background-color: green;
-    border: 5px solid black;
-    width: 100px;
-    height: 100px;
 }
-

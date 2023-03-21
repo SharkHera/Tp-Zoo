@@ -4,7 +4,7 @@ class Enclos
     private $id;
     private $typeEnclos;
     private $name;
-    private $degreDeProprete;
+    private $cleanliness;
     private $resident;
 
 
@@ -28,8 +28,8 @@ class Enclos
         if (isset($data['typeEnclos'])) {
             $this->setenclosType($data['typeEnclos']);
         }
-        if (isset($data['degreDeProprete'])) {
-            $this->setdegreDeProprete($data['degreDeProprete']);
+        if (isset($data['cleanliness'])) {
+            $this->setcleanliness($data['cleanliness']);
         }
         if (isset($data['resident'])) {
             $this->setresident($data['resident']);
@@ -39,8 +39,8 @@ class Enclos
 
     public function afficherCaracteristiques()
     {
-        echo "Nom : " . $this->nom . "\n";
-        echo "Propreté : " . $this->degreDeProprete . "\n";
+        echo "Nom : " . $this->name . "\n";
+        echo "Propreté : " . $this->cleanliness . "\n";
         echo "Nombre d'animaux : " . $this->resident . "\n";
     }
 
@@ -100,17 +100,17 @@ class Enclos
     /**
      * Get the value of degreDeProprete
      */
-    public function getDegreDeProprete()
+    public function getcleanliness()
     {
-        return $this->degreDeProprete;
+        return $this->cleanliness;
     }
 
     /**
      * Set the value of degreDeProprete
      */
-    public function setDegreDeProprete($degreDeProprete): self
+    public function setcleanliness($cleanliness): self
     {
-        $this->degreDeProprete = $degreDeProprete;
+        $this->cleanliness = $cleanliness;
 
         return $this;
     }
