@@ -10,9 +10,9 @@ class Animal
     private $id;
     private $taille;
     private $age;
-    private $aFaim = 'true';
-    private $dort = 'true';
-    private $malade = 'false';
+    private $aFaim = 'yes';
+    private $dort = 'yes';
+    private $malade = 'no';
 
 
 
@@ -43,10 +43,13 @@ class Animal
 
     public function Manger()
     {
-        if ($aFaim = true) {
-            $this->$aFaim = false;
+        if ($this->aFaim == 'yes') {
+            $this->aFaim == 'no';
 
             echo "<p>Nourriture consommer, l'animal cri de joie</p>";
+            $this->Crier();
+        } else if ($this->aFaim == 'no') {
+            echo "<p>l'animal n'a pas faim.</p>";
         }
     }
 
@@ -56,16 +59,8 @@ class Animal
     }
 
 
-    public function dormir()
-    {
-        if ($dort = true) {
-            $this->$dort = false;
-            echo "<p>l'animal dort et ne peut pas effectuer d'autres actions avant d'avoir été réveillé.</p>";
-        }
-    }
 
-
-    public function etreSoigner()
+    public function EtreSoigner()
     {
         if ($malade = true) {
             $this->$malade = false;
@@ -73,23 +68,25 @@ class Animal
         }
     }
 
-    public function seReveiller()
+    public function WakeUp()
     {
-        if ($dort = true) {
-            $dort = false;
+        if ($this->dort == 'yes') {
+            $this->dort == 'no';
             echo "<p>l'animal se fait réveiller, il n'apprécie pas.</p>";
+        } else if ($this->dort == 'no') {
+            echo "<p>L'animal ne dort pas.</p>";
         }
     }
 
     public function displayCharacteristics()
     {
         echo "Species: " . $this->nomEspece . "<br>";
-        echo "Weight: " . $this->poids . " kg<br>";
-        echo "Height: " . $this->taille . " cm<br>";
+        echo "Weight: " . $this->poids . " kg" . "<br>";
+        echo "Height: " . $this->taille . " m" . "<br>";
         echo "Age: " . $this->age . "<br>";
-        echo "Is Hungry: " . ($this->aFaim ? "Yes" : "No") . "<br>";
-        echo "Is Sleeping: " . ($this->dort ? "Yes" : "No") . "<br>";
-        echo "Is Sick: " . ($this->malade ? "Yes" : "No") . "<br>";
+        echo "Is Hungry: " . $this->aFaim . "<br>";
+        echo "Is Sleeping: " . $this->dort . "<br>";
+        echo "Is Sick: " . $this->malade . "<br>";
     }
 
 

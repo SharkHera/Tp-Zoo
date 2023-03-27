@@ -45,6 +45,15 @@ require_once("./NavBar.php");
                     <option value="requin">Requin</option>
                     <option value="tigre">Tigre</option>
                 </select>
+                <label for="name">Quel est son poids ? :</label>
+                <input type="number" min="5" max="100" name="poids" id="poids">
+
+                <label for="name">Quel est sa taille en M ? :</label>
+                <input type="number" min="1" max="20" name="taille" id="taille">
+
+                <label for="name">Quel est son Age ? :</label>
+                <input type="number" min="0" max="40" name="age" id="age">
+
                 <input type="hidden" name="id" value="<?php $id ?>">
                 <br>
                 <input type="submit" value="Add Animal">

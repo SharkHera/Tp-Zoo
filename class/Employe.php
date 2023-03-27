@@ -1,10 +1,14 @@
 <?php
+require_once('./config/autoloadplus.php');
+require_once('./config/db.php');
+
 class Employe
 {
     private $name;
     private $age;
     private $sexe;
     private $db;
+
 
     public function __construct(PDO $db)
     {
@@ -17,21 +21,42 @@ class Employe
     {
     }
 
-    public function nettoyage()
+    public function Nettoyage(Enclos $enclos)
     {
+        $enclos->cleanUp();
     }
 
-    public function Nourrir()
+    public function Feed(Animal $animal)
     {
+        $animal->Manger();
     }
+
+    public function Awake(Animal $animal)
+    {
+        $animal->WakeUp();
+    }
+    public function Empty(Enclos $enclos)
+    {
+        $enclos->EmptyEnclosure();
+    }
+
+    public function Heal(Animal $animal)
+    {
+
+        $animal->EtreSoigner();
+    }
+
 
     public function AjouterAnimaux(Animal $animal)
     {
-        $request = $this->db->prepare('INSERT INTO animaux (type,name,nomEspece) VALUE(:type,:name,:nomEspece)');
+        $request = $this->db->prepare('INSERT INTO animaux (type,name,nomEspece,poids,taille,age) VALUE(:type,:name,:nomEspece,:poids,:taille,:age)');
         $request->execute([
             'name' => $animal->getName(),
             'type' => $animal->getTYPE(),
-            'nomEspece' => $animal->getnomEspece()
+            'nomEspece' => $animal->getnomEspece(),
+            'poids' => $animal->getPoids(),
+            'taille' => $animal->getTaille(),
+            'age' => $animal->getAge(),
         ]);
     }
 
@@ -76,6 +101,18 @@ class Employe
         return $allEncloslapute;
     }
 
+    public function findEnclosById($id)
+    {
+        $query = $this->db->prepare('SELECT * FROM enclos WHERE id = :id');
+        $query->execute([
+            "id" => $id
+        ]);
+        $data = $query->fetch(PDO::FETCH_ASSOC);
+        $enclos = new Enclos($data);
+
+        return $enclos;
+    }
+
     public function MoveAnimalToEnclosure(array $data)
     {
 
@@ -86,12 +123,12 @@ class Employe
         ]);
     }
 
-    public function DisplayAnimal()
+    public function DisplayAnimalByEnclosId($id)
     {
 
         $query = $this->db->prepare('SELECT * FROM animaux WHERE enclosId = :id');
         $query->execute([
-            'id' => $_POST['id']
+            'id' => $id
         ]);
 
         $displayAnimaux = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -108,18 +145,10 @@ class Employe
 
 
 
-    public function Reveil()
-    {
-    }
 
-    public function ManageAnimaux()
-    {
-    }
 
     public function Directives()
     {
-        //directives donner par l'employeur 
-
     }
 
     /**

@@ -14,6 +14,12 @@ class Requin extends Animal
         echo "Le Requin nage";
     }
 
+    public function AfficherImage()
+    {
+
+        return './images/requin.png';
+    }
+
     /**
      * Get the value of TYPE
      */

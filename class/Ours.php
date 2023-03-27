@@ -17,6 +17,11 @@ class Ours extends Animal
     {
     }
 
+    public function AfficherImage()
+    {
+        return './images/ours.png';
+    }
+
     /**
      * Get the value of TYPE
      */

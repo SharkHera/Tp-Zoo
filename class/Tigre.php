@@ -14,6 +14,11 @@ class Tigre extends Animal
         echo "Le tigre se promène";
     }
 
+    public function AfficherImage()
+    {
+        return 'C:\laragon\www\Tp-Zoo\images\tigre.png';
+    }
+
     /**
      * Get the value of TYPE
      */

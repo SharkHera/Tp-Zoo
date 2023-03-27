@@ -17,3 +17,7 @@ function chargerClasse($classname)
 spl_autoload_register('chargerClasse');
 
 session_start();
+function pretyDump($data)
+{
+    highlight_string("<?php\n\$data =\n" . var_export($data, true) . ";\n?>");
+}

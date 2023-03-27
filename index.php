@@ -67,7 +67,6 @@ require_once("./NavBar.php");
                 <h6 class="card-text"><?= $enclos->getenclosType() ?></h6>
                 <form action="DisplayAnimal.php" method="post">
                     <input type="hidden" name="id" value="<?= $enclos->getId() ?>">
-
                     <button class="btn btn-primary">Show Animal</button>
                 </form>
 

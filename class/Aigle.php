@@ -16,6 +16,11 @@ class Aigle extends Animal
         echo "L'aigle vole";
     }
 
+    public function AfficherImage()
+    {
+        return './images/aigle.png';
+    }
+
     /**
      * Get the value of TYPE
      */

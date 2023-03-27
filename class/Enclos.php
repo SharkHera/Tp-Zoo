@@ -1,20 +1,13 @@
 <?php
 class Enclos
 {
-    private $id;
+    private int $id;
     private $typeEnclos;
     private $name;
     private $cleanliness;
     private $resident;
 
 
-    // public function __construct($nom, $enclosType, $degreDeProprete, $resident)
-    // {
-    //     $this->nom = $nom;
-    //     $this->degreDeProprete = $degreDeProprete;
-    //     $this->resident = $resident;
-    //     $this->enclosType = $enclosType;
-    // }
 
 
     public function __construct(array $data)
@@ -44,8 +37,11 @@ class Enclos
         echo "Nombre d'animaux : " . $this->resident . "\n";
     }
 
-    public function Manage()
+    public function EmptyEnclosure()
     {
+        if ($this->resident != 0) {
+            $this->resident = 0;
+        }
     }
 
     public function InfoAnimaux()
@@ -54,7 +50,7 @@ class Enclos
 
     public function cleanUp()
     {
-        if ($resident = 0) {
+        if ($this->resident = 0) {
             echo "L'enclos à été nettoyé.";
         } else {
             echo "Veuillez vider l'enclos avant de procéder au nettoyage.";
@@ -146,7 +142,7 @@ class Enclos
      */
     public function setId($id): self
     {
-        $this->id = $id;
+        $this->id =  $id;
 
         return $this;
     }
